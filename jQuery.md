@@ -1,3 +1,4 @@
+# 持续收集中。。。
 + 解释"chaining"。
 + 解释"deferreds"。
 + 你知道哪些针对 jQuery 的优化方法。
