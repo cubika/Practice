@@ -74,3 +74,52 @@
 + JS如何实现面向对象和继承机制？
 + JS模块的封装方法，比如怎样实现私有变量，不能直接赋值，只能通过公有方法；
 + 对this指针的理解，可以列举几种使用情况？
++ 函数返回什么？
+	<!--一个函数，能访问什么变量，看的是定义在什么地方，而不是执行的位置。-->
+    ```
+    function inside() {
+        return x;
+    }
+    function outside(){
+        var x = 1;
+        return inside;
+    }
+    var xx = outside()();
+    ```
++ 下面一段代码的输出是什么：
+    ```
+    var x = 5;
+    var example = {
+        x: 100,
+        a: function () {
+            var x = 200;
+            console.log('a context: %s, var x = %s', this.x, x);
+        },
+        b: function () {
+            var x = 300;
+            return function () {
+                var x = 400;
+                console.log('b context: %s, var x = %s', this.x, x);
+            };
+        },
+        c: function () {
+            var other = {
+                x: 500
+            };
+            var execB = this.b().bind(other);
+            execB();
+            return execB;
+        }
+    };
+    console.log('example.x:' + example.x);
+    example.a();
+    example.b()();
+    example.a.call({
+        x: 9999
+    });
+
+    var execB = example.c(); 
+    execB.call({
+        x: 9999
+    }); 
+    ```
