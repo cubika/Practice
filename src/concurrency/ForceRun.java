@@ -1,4 +1,4 @@
-package corrency;
+package concurrency;
 
 public class ForceRun implements Runnable{
 
